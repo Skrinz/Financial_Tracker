@@ -7,9 +7,9 @@
 - LAURENZ MESIAH A. PALANAS
 
 #Forked#
-# Enterpise Architecture IS3105
+# Enterprise Architecture IS3105
 
-## SHEPHER'S LEDGER
+## SHEPHERD'S LEDGER
 
 ### *members:*
 - CARL FRANCOISE A. CABAS
@@ -20,4 +20,4 @@
 ------------------------
     
 > [!NOTE]
-> This is for academic purpose only. 
+> This is for academic purposes only. 
