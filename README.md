@@ -1,75 +1,59 @@
 #Original#
-
-# Website Development II CIS2102
-
+# Website Development II   CIS2102
 ## SHEPHERD'S LEDGER
-
-### _members:_
-
+### *members:*   
 - CARL FRANCOISE A. CABAS
-- MICHAEL JAMES N. CATUBIG
+- MICHAEL JAMES N. CATUBIG   
 - LAURENZ MESIAH A. PALANAS
 
 #Forked#
+# Enterpise Architecture IS3105
 
-# Enterprise Architecture IS3105
+## SHEPHER'S LEDGER
 
-## SHEPHERD'S LEDGER
-
-### _members:_
-
+### *members:*
 - CARL FRANCOISE A. CABAS
 - ACE KHALEL L. VEGA
 - RAILEY ESCANDOR
 - JOSHUA COLLAMAT
 
----
-
+------------------------
+    
 > [!NOTE]
-> This is for academic purposes only.
+> This is for academic purpose only. 
+
 
 # HOW TO RUN?
-
 ### Step 1:
-
 Navigate the project folder in your desktop and Right click to any open space then click "Open in Code".</br>
 ![image](https://github.com/user-attachments/assets/a46c9314-9167-47c5-aab9-7a9b0ed272bb)
 
 ### Step 2:
-
 Open terminal in VS Code.
-
 - In your VS Code, click Terminal in top selection and click New terminal, </br>
-  ![image](https://github.com/user-attachments/assets/d61b575c-a02d-4cdf-afcb-38bbe213af8c)
+![image](https://github.com/user-attachments/assets/d61b575c-a02d-4cdf-afcb-38bbe213af8c)
 
 </br>
 
 - After the new terminal shows up, Repeat the step 2 and Click the Split Terminal, </br>
-  ![image](https://github.com/user-attachments/assets/46b675e5-1920-4501-9530-77d69cf60d5f)
+![image](https://github.com/user-attachments/assets/46b675e5-1920-4501-9530-77d69cf60d5f)
 
 ### Step 3:
-
 In your Terminal, Run this command to start the backend server.
-
 - Open Server folder
-
 ```
 cd server
 ```
-
 - Start the "server.js"
-
 ```
 node server.js
 ```
-
 - Start the localhost for web
-
 ```
 npm run dev
 ```
-
 ![image](https://github.com/user-attachments/assets/393d3cd0-5e7b-44bd-a58c-3f1b2f6e2fd5)
+
 
 </br>
 </br>
@@ -173,23 +157,19 @@ user password: TestPassword123
 ```
 
 ## Pie Chart
-
 ```
 npm install chart.js react-chartjs-2
 ```
 
 ## Sidebar
-
 ```
 npm install lucide-react
 ```
-
 </br>
 
-# BACKEND SERVER
+# BACKEND SERVER 
 
 ### Step 1: Set Up the Server Folder
-
 Navigate to the server folder:
 
 cd server
@@ -197,50 +177,36 @@ Install dependencies:
 
 npm install
 Install necessary packages:
-
 ```
 npm install express
 npm install bcrypt
 npm install express-validator
 npm install cors
 ```
-
 ### Step 2: Set Up Prisma
-
 Install Prisma as a development dependency:
-
 ```
 npm install prisma --save-dev
 ```
-
 Initialize Prisma:
-
 ```
 npx prisma init
 ```
-
 If editing the schema, run the following to migrate the schema:
-
 ```
 npx prisma migrate dev --name <migration_name>
 ```
-
 Generate Prisma client:
-
 ```
 npx prisma generate
 ```
-
 Deploy the migrations or start Prisma Studio:
 
 To deploy migrations:
-
 ```
 npx prisma migrate deploy
 ```
-
 To open Prisma Studio:
-
 ```
 npx prisma studio
 ```
