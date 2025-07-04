@@ -66,3 +66,23 @@ fetch("http://localhost:4001/api/expenses", {
   .then(data => console.log("Created expense:", data))
   .catch(err => console.error("Error:", err));
 ```
+
+<br><br>
+
+# 🧾 API Endpoints
+All routes require a valid JWT in the Authorization header.
+
+<strong>➕ POST ``/expenses``</strong>
+Create a new expense.
+
+<strong>📄 GET ``/expenses``</strong>
+Get all expenses for the authenticated user.
+
+<strong>🔍 GET ``/expenses/<id>``</strong>
+Get a single expense by ID.
+
+<strong>✏️ PATCH ``/expenses/<id>``</strong>
+Update an expense.
+
+<strong>❌ DELETE ``/expenses/<id>``</strong>
+Delete an expense.
