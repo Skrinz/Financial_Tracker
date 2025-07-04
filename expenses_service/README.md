@@ -49,7 +49,7 @@ This service requires a JWT token to access any route. This token must be includ
 ```js
 const token = "your-jwt-token-here"; // 👈 the fetched token
 
-fetch("http://localhost:4001/api/expenses", {
+fetch("http://localhost:4001/expenses", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
