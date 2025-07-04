@@ -58,8 +58,8 @@ fetch("http://localhost:4001/expenses", {
   body: JSON.stringify({
     expense_name: "Dinner",
     amount: 120,
-    userId: 22,
-    categoryId: 11
+    userId: 22,      // 👈 pass the User ID here
+    categoryId: 11   // 👈 pass the Budget ID here
   })
 })
   .then(res => res.json())
