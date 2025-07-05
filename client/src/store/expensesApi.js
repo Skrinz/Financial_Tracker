@@ -11,7 +11,7 @@ export const fetchExpenses = async () => {
     }
     const response = await fetch(`${API_URL}/expenses`, {
       headers: {
-        Authorization: `${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -45,7 +45,7 @@ export const updateExpense = async (id, expense) => {
     const response = await fetch(`${API_URL}/expenses/${id}`, {
       method: "PATCH",
       headers: {
-        Authorization: `${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(expense),
@@ -83,7 +83,7 @@ export const deleteExpense = async (id) => {
     const response = await fetch(`${API_URL}/expenses/${id}`, {
       method: "DELETE",
       headers: {
-        Authorization: `${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -121,7 +121,7 @@ export const addExpense = async (expense) => {
     const response = await fetch(`${API_URL}/expenses`, {
       method: "POST",
       headers: {
-        Authorization: `${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(expense),
