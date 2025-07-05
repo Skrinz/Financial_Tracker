@@ -55,8 +55,6 @@ http://localhost:4002/users
 
 This service requires a JWT token to access change profile.
 
-<strong>Sample token passing</strong>
-
 <br><br>
 
 # 🧾 API Endpoints

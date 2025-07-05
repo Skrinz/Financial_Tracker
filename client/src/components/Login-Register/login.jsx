@@ -33,7 +33,7 @@ const Login = ({ setIsLogin, isVisible }) => {
 
     //try login first
     try {
-      const response = await fetch("http://localhost:3000/users/login", {
+      const response = await fetch("http://localhost:3000/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

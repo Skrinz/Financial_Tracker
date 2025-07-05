@@ -1,6 +1,6 @@
 import useAuthStore from "./authStore";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "http://localhost:3000/api";
 
 // Function to fetch the budget data from the backend with the token
 export const fetchBudgets = async () => {

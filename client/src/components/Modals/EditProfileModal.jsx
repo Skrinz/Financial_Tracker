@@ -63,7 +63,7 @@ const EditProfileModal = ({ profileData, onClose }) => {
         }
 
         const response = await fetch(
-          "http://localhost:3000/users/changePassword",
+          "http://localhost:3000/api/users/changePassword",
           {
             method: "PATCH",
             headers: {
