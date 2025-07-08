@@ -2,7 +2,7 @@
 
 This is a standalone microservice for managing user expenses, separated from the monolithic financial tracker system.
 
-<br><br>
+<br>
 
 # 🚀 Features
 
@@ -11,7 +11,7 @@ This is a standalone microservice for managing user expenses, separated from the
 3. Stores data in a separate SQLite database
 4. Accepts API requests from other services (not public users)
 
-<br><br>
+<br>
 
 # ⚙️ Setup Instructions
 
@@ -27,7 +27,7 @@ npm install
 ```ini
 DATABASE_URL="file:./dev.db"
 JWT_SECRET="inazumashineseternal"
-PORT=4001
+PORT=4002
 ```
 
 <strong>3. Run Prisma setup</strong>
@@ -49,23 +49,26 @@ The API will be available at:
 http://localhost:4002/users
 ```
 
-<br><br>
+<br>
 
 # 🔐 Authentication (Passing the Token)
 
 This service requires a JWT token to access change profile.
 
-<br><br>
+<br>
 
 # 🧾 API Endpoints
 
 All routes require a valid JWT in the Authorization header.
 
-<strong>➕ POST `/users/register`</strong>
+<strong>➕ POST `/register`</strong>  
 Create a new user.
 
-<strong>📄 POST `/users/login`</strong>
-Check if the user is in the database
+<strong>📄 POST `/login`</strong>  
+Check if the user is in the database.
 
-<strong>✏️ PATCH `/users/changePassword`</strong>
+<strong>✏️ PATCH `/changePassword`</strong>  
 Update user profile.
+
+<strong>🔐 POST `/verify`</strong>  
+Verifies the token provided.
