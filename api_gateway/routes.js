@@ -1,5 +1,4 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
-const { authenticate } = require("./auth");
 
 module.exports = (app) => {
   const commonOptions = {
@@ -7,7 +6,6 @@ module.exports = (app) => {
     pathRewrite: { "^/api": "" },
   };
 
-  // Public (unauthenticated) routes
   app.use(
     "/api/users",
     createProxyMiddleware({
@@ -16,10 +14,8 @@ module.exports = (app) => {
     })
   );
 
-  // Protected routes
   app.use(
     "/api/expenses",
-    authenticate,
     createProxyMiddleware({
       ...commonOptions,
       target: process.env.EXPENSES_SERVICE_URL,
@@ -28,7 +24,6 @@ module.exports = (app) => {
 
   app.use(
     "/api/budgets",
-    authenticate,
     createProxyMiddleware({
       ...commonOptions,
       target: process.env.BUDGET_SERVICE_URL,
