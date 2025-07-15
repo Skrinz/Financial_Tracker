@@ -1,17 +1,3 @@
-#Original#
-
-# Website Development II CIS2102
-
-## SHEPHERD'S LEDGER
-
-### _members:_
-
-- CARL FRANCOISE A. CABAS
-- MICHAEL JAMES N. CATUBIG
-- LAURENZ MESIAH A. PALANAS
-
-#Forked#
-
 # Enterpise Architecture IS3105
 
 ## SHEPHER'S LEDGER
@@ -165,13 +151,6 @@ npm install react-router-dom
 npm install zustand
 ```
 
-### test dummy account
-
-```
-user email: tester@gmail.com
-user password: Tester123@
-```
-
 ## Pie Chart
 
 ```
@@ -240,4 +219,11 @@ To open Prisma Studio:
 
 ```
 npx prisma studio
+```
+
+### test dummy account
+
+```
+user email: tester@gmail.com
+user password: Tester123@
 ```

@@ -1,17 +1,17 @@
-# 📦 User Service
+# 📦 Budget Service
 
-This is a standalone microservice for managing user accounts, separated from the monolithic financial tracker system.
+This is a standalone microservice for managing user budgets, separated from the monolithic financial tracker system.
 
-<br>
+<br><br>
 
 # 🚀 Features
 
-1. Login, Register, Verify Token, and Update Profile
+1. Add, update, delete, and fetch budgets
 2. Validates requests with JWT from the main monolith
 3. Stores data in a separate SQLite database
 4. Accepts API requests from other services (not public users)
 
-<br>
+<br><br>
 
 # ⚙️ Setup Instructions
 
@@ -26,8 +26,7 @@ npm install
 
 ```ini
 DATABASE_URL="file:./dev.db"
-JWT_SECRET="inazumashineseternal"
-PORT=4002
+PORT=4003
 ```
 
 <strong>3. Run Prisma setup</strong>
@@ -46,29 +45,32 @@ node server.js
 The API will be available at:
 
 ```ini
-http://localhost:4002/users
+http://localhost:4003/budgets
 ```
 
-<br>
+<br><br>
 
 # 🔐 Authentication (Passing the Token)
 
-This service requires a JWT token to access change profile.
+This service requires a JWT token to access any route. This token must be included in every request as part of the Authorization header.
 
-<br>
+<br><br>
 
 # 🧾 API Endpoints
 
 All routes require a valid JWT in the Authorization header.
 
-<strong>➕ POST `/register`</strong>  
-Create a new user.
+<strong>➕ POST `/budgets`</strong>  
+Create a new budget.
 
-<strong>📄 POST `/login`</strong>  
-Check if the user is in the database.
+<strong>📄 GET `/budgets`</strong>  
+Get all budget for the authenticated user.
 
-<strong>✏️ PATCH `/changePassword`</strong>  
-Update user profile.
+<strong>🔍 GET `/budgets/<id>`</strong>  
+Get a single budget by ID.
 
-<strong>🔐 POST `/verify`</strong>  
-Verifies the token provided.
+<strong>✏️ PATCH `/budgets/<id>`</strong>  
+Update an budget.
+
+<strong>❌ DELETE `/budgets/<id>`</strong>  
+Delete an budget.
