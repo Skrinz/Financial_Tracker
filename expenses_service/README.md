@@ -21,7 +21,6 @@ npm install
 &nbsp;&nbsp;&nbsp;&nbsp;Create a .env file with the following:
 ```ini
 DATABASE_URL="file:./dev.db"
-JWT_SECRET="inazumashineseternal"
 PORT=4001
 ```
 

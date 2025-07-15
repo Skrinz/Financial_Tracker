@@ -14,7 +14,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// All /api/expenses routes will require a valid JWT
+// All /expenses routes will require a valid JWT
 app.use("/expenses", validateToken, expenseRoutes);
 
 app.get("/health", (req, res) => res.json({ status: "ok" }));

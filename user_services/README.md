@@ -1,4 +1,4 @@
-# 📦 Expenses Service
+# 📦 User Service
 
 This is a standalone microservice for managing user expenses, separated from the monolithic financial tracker system.
 

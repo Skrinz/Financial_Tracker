@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
   }
 
   try {
-    const response = await fetch(`${process.env.GATEWAY_URL}/users/verify`, {
+    const response = await fetch(`${process.env.GATEWAY_URL}/api/users/verify`, {
       method: "POST",
       headers: {
         Authorization: header,
