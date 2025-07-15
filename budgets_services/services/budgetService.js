@@ -1,84 +1,97 @@
 const { PrismaClient } = require("@prisma/client");
+
 const prisma = new PrismaClient();
 
-const createBudget = async ({ userId, amount, categoryId, startDate, endDate }) => {
+// Create a new budget
+const createBudget = async (budgetData) => {
   try {
-    const budget = await prisma.budget.create({
+    const newBudget = await prisma.budget.create({
       data: {
-        userId,
-        amount,
-        categoryId,
-        startDate: new Date(startDate),
-        endDate: new Date(endDate),
+        budget_name: budgetData.budget_name,
+        amount: budgetData.amount,
+        userId: budgetData.userId,
       },
     });
-    return budget;
+    return newBudget;
   } catch (error) {
-    console.error("Error creating budget:", error);
-    throw new Error("Failed to create budget");
+    console.error("Error creating budget:", error.message);
+    throw new Error("Failed to create budget.");
   }
 };
 
-const getBudgets = async (userId, filters = {}) => {
-  const where = { userId };
-  if (filters.categoryId) where.categoryId = filters.categoryId;
-  if (filters.startDate) where.startDate = { gte: new Date(filters.startDate) };
-  if (filters.endDate) where.endDate = { lte: new Date(filters.endDate) };
-
+// Get all budgets for a user
+const getBudgets = async (userId) => {
   try {
-    const budgets = await prisma.budget.findMany({ where });
+    const budgets = await prisma.budget.findMany({
+      where: { userId },
+    });
     return budgets;
   } catch (error) {
-    console.error("Error fetching budgets:", error);
-    throw new Error("Failed to retrieve budgets");
+    console.error("Error retrieving budgets:", error.message);
+    throw new Error("Failed to retrieve budgets.");
   }
 };
 
-const getBudgetById = async (id, userId) => {
+// Get a single budget by ID
+const getBudgetById = async (id) => {
   try {
     const budget = await prisma.budget.findUnique({
-      where: { id, userId }, // Ensure budget belongs to the user
+      where: { id },
     });
     return budget;
   } catch (error) {
-    console.error("Error fetching budget by ID:", error);
-    throw new Error("Failed to retrieve budget");
+    console.error("Error retrieving budget by ID:", error.message);
+    throw new Error("Failed to retrieve budget.");
   }
 };
 
-const updateBudget = async (id, userId, data) => {
+// Update a budget
+const updateBudget = async (id, updatedData) => {
   try {
+    const existingBudget = await findBudget(id);
+
+    if (!existingBudget) return null;
+
     const updatedBudget = await prisma.budget.update({
-      where: { id, userId }, // Ensure budget belongs to the user
-      data: {
-        amount: data.amount,
-        categoryId: data.categoryId,
-        startDate: data.startDate ? new Date(data.startDate) : undefined,
-        endDate: data.endDate ? new Date(data.endDate) : undefined,
-      },
+      where: { id },
+      data: updatedData,
     });
+
     return updatedBudget;
   } catch (error) {
-    if (error.code === 'P2025') { // Prisma error code for record not found
-      return null; // Indicate budget not found
-    }
-    console.error("Error updating budget:", error);
-    throw new Error("Failed to update budget");
+    console.error("Error updating budget:", error.message);
+    throw new Error("Failed to update budget.");
   }
 };
 
-const deleteBudget = async (id, userId) => {
+// Delete a budget
+const deleteBudget = async (id) => {
   try {
+    const existingBudget = await findBudget(id);
+
+    if (!existingBudget) return null;
+
     const deletedBudget = await prisma.budget.delete({
-      where: { id, userId }, // Ensure budget belongs to the user
+      where: { id },
     });
+
     return deletedBudget;
   } catch (error) {
-    if (error.code === 'P2025') {
-      return null; // Indicate budget not found
-    }
-    console.error("Error deleting budget:", error);
-    throw new Error("Failed to delete budget");
+    console.error("Error deleting budget:", error.message);
+    throw new Error("Failed to delete budget.");
+  }
+};
+
+// Helper function to find a budget by ID
+const findBudget = async (id) => {
+  try {
+    const budget = await prisma.budget.findUnique({
+      where: { id },
+    });
+    return budget;
+  } catch (error) {
+    console.error("Error finding budget:", error.message);
+    throw new Error("Failed to find budget.");
   }
 };
 

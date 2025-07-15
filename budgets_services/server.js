@@ -1,7 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+
 const budgetRoutes = require("./routes/budgetRoutes");
+const validateToken = require("./middlewares/auth");
 
 const app = express();
 app.use(cors());
@@ -11,9 +13,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/budgets", budgetRoutes);
+app.use("/budgets", validateToken, budgetRoutes);
 
-app.get("/health", (req, res) => res.json({ status: "ok" }));
+app.get("/health", (res) => res.json({ status: "ok" }));
 
-const PORT = process.env.PORT || 4003; // Use a different port than user/expense services
-app.listen(PORT, () => console.log(`→ Budget service on ${PORT}`));
+const PORT = process.env.PORT || 4003;
+app.listen(PORT, () => console.log(`→ Budgets service on ${PORT}`));

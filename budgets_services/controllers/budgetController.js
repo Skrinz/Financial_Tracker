@@ -1,90 +1,96 @@
-const budgetService = require("../services/budgetService");
+const budgetsService = require("../services/budgetService");
 
 const createBudgetController = async (req, res) => {
   try {
-    const { amount, categoryId, startDate, endDate } = req.body;
-    const userId = req.user.id; // Extracted from JWT
+    const budgetData = req.body;
+    const user = req.user;
 
-    const newBudget = await budgetService.createBudget({
-      userId,
-      amount,
-      categoryId,
-      startDate,
-      endDate,
-    });
+    budgetData.userId = user.id;
+
+    const newBudget = await budgetsService.createBudget(budgetData);
 
     res.status(201).json(newBudget);
   } catch (error) {
-    console.error("Error in createBudgetController:", error);
-    res.status(500).json({ message: "Something went wrong during budget creation" });
+    console.error("Error creating budget:", error.message);
+    res
+      .status(500)
+      .json({ error: "Failed to create budget. Please try again later." });
   }
 };
 
 const getBudgetsController = async (req, res) => {
   try {
-    const userId = req.user.id;
-    const filters = req.query; // categoryId, startDate, endDate
+    const user = req.user;
 
-    const budgets = await budgetService.getBudgets(userId, filters);
-    res.status(200).json(budgets);
+    const budgetsList = await budgetsService.getBudgets(user.id);
+
+    res.json(budgetsList);
   } catch (error) {
-    console.error("Error in getBudgetsController:", error);
-    res.status(500).json({ message: "Something went wrong while retrieving budgets" });
+    console.error("Error fetching budgets:", error.message);
+    res
+      .status(500)
+      .json({ error: "Failed to retrieve budgets. Please try again later." });
   }
 };
 
 const getBudgetByIdController = async (req, res) => {
   try {
-    const { id } = req.params;
-    const userId = req.user.id;
+    const budgetId = parseInt(req.params.id);
 
-    const budget = await budgetService.getBudgetById(id, userId);
+    const budget = await budgetsService.getBudgetById(budgetId);
 
     if (!budget) {
-      return res.status(404).json({ message: "Budget not found or not authorized" });
+      return res.status(404).json({ error: "Budget not found" });
     }
 
-    res.status(200).json(budget);
+    res.json(budget);
   } catch (error) {
-    console.error("Error in getBudgetByIdController:", error);
-    res.status(500).json({ message: "Something went wrong while retrieving the budget" });
+    console.error("Error fetching budget by ID:", error.message);
+    res
+      .status(500)
+      .json({ error: "Failed to retrieve budget. Please try again later." });
   }
 };
 
 const updateBudgetController = async (req, res) => {
   try {
-    const { id } = req.params;
-    const userId = req.user.id;
-    const updateData = req.body;
+    const budgetId = parseInt(req.params.id);
+    const updatedBudgetData = req.body;
 
-    const updatedBudget = await budgetService.updateBudget(id, userId, updateData);
+    const updatedBudget = await budgetsService.updateBudget(
+      budgetId,
+      updatedBudgetData
+    );
 
     if (!updatedBudget) {
-      return res.status(404).json({ message: "Budget not found or not authorized" });
+      return res.status(404).json({ error: "Budget not found" });
     }
 
-    res.status(200).json(updatedBudget);
+    res.json(updatedBudget);
   } catch (error) {
-    console.error("Error in updateBudgetController:", error);
-    res.status(500).json({ message: "Something went wrong while updating the budget" });
+    console.error("Error updating budget:", error.message);
+    res
+      .status(500)
+      .json({ error: "Failed to update budget. Please try again later." });
   }
 };
 
 const deleteBudgetController = async (req, res) => {
   try {
-    const { id } = req.params;
-    const userId = req.user.id;
+    const budgetId = parseInt(req.params.id);
 
-    const deletedBudget = await budgetService.deleteBudget(id, userId);
+    const deletedBudget = await budgetsService.deleteBudget(budgetId);
 
     if (!deletedBudget) {
-      return res.status(404).json({ message: "Budget not found or not authorized" });
+      return res.status(404).json({ error: "Budget not found" });
     }
 
-    res.status(204).send(); // No content on successful deletion
+    res.json(deletedBudget);
   } catch (error) {
-    console.error("Error in deleteBudgetController:", error);
-    res.status(500).json({ message: "Something went wrong while deleting the budget" });
+    console.error("Error deleting budget:", error.message);
+    res
+      .status(500)
+      .json({ error: "Failed to delete budget. Please try again later." });
   }
 };
 
