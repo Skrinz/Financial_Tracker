@@ -199,10 +199,7 @@ npm install
 Install necessary packages:
 
 ```
-npm install express
-npm install bcrypt
-npm install express-validator
-npm install cors
+npm install express bcrypt express-validator cors dotenv
 ```
 
 ### Step 2: Set Up Prisma
